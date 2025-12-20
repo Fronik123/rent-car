@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
 
 const TAB_BAR_STYLE = {
   marginBottom: 42,
+  marginTop: 16,
   marginLeft: 8,
   marginRight: 8,
   borderWidth: 1,

@@ -39,6 +39,7 @@ export const Colors = {
     seccess: "#32AF47",
     error: "#FF4848",
     gray: "#666666",
+    secondaryGray: "#FFFFFFB2",
   },
   dark: {
     text: "#FFFFFF",
@@ -52,6 +53,7 @@ export const Colors = {
     seccess: "#228B22",
     error: "#D32F2F",
     gray: "#888888",
+    secondaryGray: "#FFFFFFB2",
   },
 };
 

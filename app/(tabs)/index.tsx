@@ -1,12 +1,66 @@
+import CardCar from "@/components/card-car";
 import HomeHeader from "@/components/home/home-header";
-import { StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const mockCars = [
+  {
+    id: "1",
+    name: "BMW",
+    consumeFuel: "11.2",
+    price: "300",
+    rating: "3.2",
+    image: require("../../assets/images/card-car/car1.png"),
+  },
+  {
+    id: "2",
+    name: "AUDI",
+    consumeFuel: "11.2",
+    price: "240",
+    rating: "3.2",
+    image: require("../../assets/images/card-car/car2.png"),
+  },
+  {
+    id: "4",
+    name: "Mersedes",
+    consumeFuel: "16.2",
+    price: "300",
+    rating: "3.2",
+    image: require("../../assets/images/card-car/car3.png"),
+  },
+  {
+    id: "5",
+    name: "Renault",
+    consumeFuel: "21.2",
+    price: "100",
+    rating: "4.2",
+    image: require("../../assets/images/card-car/car1.png"),
+  },
+];
 
 export default function HomeScreen() {
   return (
     <SafeAreaView>
       <HomeHeader />
+
+      <FlatList
+        data={mockCars}
+        renderItem={({ item }) => (
+          <View style={styles.containerCard}>
+            <CardCar
+              name={item.name}
+              consumeFuel={item.consumeFuel}
+              price={item.price}
+              rating={item.rating}
+              image={item.image}
+            />
+          </View>
+        )}
+        keyExtractor={(item) => item.id}
+      />
+
+      {/* <CardCar name="s" consumeFuel="s" price="2" rating="3" /> */}
     </SafeAreaView>
     // <ParallaxScrollView
     //   headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -106,5 +160,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: "absolute",
+  },
+
+  containerCard: {
+    marginTop: 16,
   },
 });
