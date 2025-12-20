@@ -12,9 +12,9 @@ export default function HomeHeader() {
         style={{ width: 48, height: 48 }}
       />
 
-      <View>
+      <View style={styles.info}>
         <ThemedText>Hello, {name}</ThemedText>
-        <ThemedText>{email}</ThemedText>
+        <ThemedText colorName="secondaryGray">{email}</ThemedText>
       </View>
 
       <Pressable style={styles.notification}>
@@ -30,9 +30,11 @@ export default function HomeHeader() {
 const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
-    backgroundColor: "red",
   },
   notification: {
     marginLeft: "auto",
+  },
+  info: {
+    marginLeft: 16,
   },
 });
