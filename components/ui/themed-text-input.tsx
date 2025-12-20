@@ -1,6 +1,6 @@
-import { StyleSheet, TextInput, type TextInputProps } from 'react-native';
+import { StyleSheet, TextInput, type TextInputProps } from "react-native";
 
-import { useThemeColor } from '@/hooks/use-theme-color';
+import { useThemeColor } from "@/hooks/use-theme-color";
 
 export type ThemedTextInputProps = TextInputProps & {
   lightColor?: string;
@@ -17,20 +17,16 @@ export function ThemedTextInput({
   darkPlaceholderColor,
   ...rest
 }: ThemedTextInputProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
-  const backgroundColor = useThemeColor({}, 'background');
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const backgroundColor = useThemeColor({}, "background");
   const placeholderTextColor = useThemeColor(
     { light: lightPlaceholderColor, dark: darkPlaceholderColor },
-    'icon'
+    "icon"
   );
 
   return (
     <TextInput
-      style={[
-        styles.input,
-        { color, backgroundColor },
-        style,
-      ]}
+      style={[styles.input, { color, backgroundColor }, style]}
       placeholderTextColor={placeholderTextColor}
       {...rest}
     />
@@ -40,7 +36,7 @@ export function ThemedTextInput({
 const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
