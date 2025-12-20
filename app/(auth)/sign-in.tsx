@@ -1,43 +1,61 @@
-import { Image } from "expo-image";
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { ThemedText } from "@/components/themed-text";
-import { ThemedTextInput } from "@/components/ui/themed-text-input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function SignIn() {
+  const handleSignUp = () => {};
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
-    >
-      <ThemedText type="title">Sign up !</ThemedText>
-      <ThemedTextInput />
-      <ThemedText>Don’t have an account? Sign Up.</ThemedText>
-    </ParallaxScrollView>
+    <SafeAreaView style={styles.container}>
+      <ThemedText style={styles.title}>Log In to</ThemedText>
+
+      <ThemedText style={styles.description}>Rent a BMW Luxury Car</ThemedText>
+
+      <Input text="Email" />
+
+      <Input text="Password" />
+
+      <Pressable>
+        <ThemedText>Forgot your password?</ThemedText>
+      </Pressable>
+
+      <Button option="primary" title="Log In" />
+
+      <Pressable onPress={handleSignUp} style={styles.singUp}>
+        <ThemedText>
+          Don’t have an account?
+          <ThemedText type="link"> Sign Up.</ThemedText>
+        </ThemedText>
+      </Pressable>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
+  container: {
+    flex: 1,
+    padding: 20,
+    justifyContent: "flex-start",
+  },
+  title: {
+    marginTop: 48,
+    textAlign: "center",
+    fontSize: 20,
+  },
+  description: {
+    marginTop: 24,
+    textAlign: "center",
+  },
+  singUp: {
     alignItems: "center",
-    gap: 8,
+    marginTop: "auto",
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
+  bottom: {
+    backgroundColor: "red",
+    height: "100%",
+    justifyContent: "space-between",
   },
 });
