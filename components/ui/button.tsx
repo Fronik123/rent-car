@@ -8,7 +8,7 @@ export type ButtonProps = PressableProps & {
   darkColor?: string;
   lightTextColor?: string;
   darkTextColor?: string;
-  title?: string;
+  title: string;
   option?: "primary" | "secondary" | "outline";
 };
 
