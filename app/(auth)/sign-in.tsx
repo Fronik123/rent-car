@@ -1,12 +1,30 @@
+import { router } from "expo-router";
 import { Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedText } from "@/components/themed-text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function SignIn() {
+  const { signIn, isLoading } = useAuth();
+
   const handleSignUp = () => {};
+
+  const handleLogIn = async () => {
+    console.log("Log In");
+    const email = "test1@gmai.com";
+    const password = "12345";
+
+    const { user, session, error } = await signIn(email, password);
+
+    if (error) {
+      alert(`Error: ${error.message}`);
+    } else if (user && session) {
+      router.replace("/(tabs)");
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,7 +40,12 @@ export default function SignIn() {
         <ThemedText>Forgot your password?</ThemedText>
       </Pressable>
 
-      <Button option="primary" title="Log In" />
+      <Button
+        option="primary"
+        title={isLoading ? "Loading..." : "Log In"}
+        onPress={handleLogIn}
+        disabled={isLoading}
+      />
 
       <Pressable onPress={handleSignUp} style={styles.singUp}>
         <ThemedText>
