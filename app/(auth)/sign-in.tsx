@@ -2,10 +2,10 @@ import { router } from "expo-router";
 import { Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { ThemedText } from "@/components/themed-text";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useAuth } from "@/hooks/use-auth";
+import { ThemedText } from "@/components/ThemedText";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function SignIn() {
   const { signIn, isLoading } = useAuth();

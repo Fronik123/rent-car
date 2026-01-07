@@ -1,7 +1,7 @@
-import { ThemedText } from "@/components/themed-text";
-import { ButtonIcon } from "@/components/ui/button-icon";
+import { ThemedText } from "@/components/ThemedText";
+import { ButtonIcon } from "@/components/ui/ButtonIcon";
 import { Colors } from "@/constants/theme";
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/hooks/useAuth";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";

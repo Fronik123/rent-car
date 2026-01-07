@@ -9,8 +9,8 @@ import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 import "react-native-reanimated";
 
-import { useAuth } from "@/hooks/use-auth";
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useAuth } from "@/hooks/useAuth";
+import { useColorScheme } from "@/hooks/useColorScheme";
 
 export const unstable_settings = {
   anchor: "(tabs)",
