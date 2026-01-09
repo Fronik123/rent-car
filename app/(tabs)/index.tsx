@@ -3,6 +3,7 @@ import HomeHeader from "@/components/home/HomeHeader";
 import { Colors } from "@/constants/theme";
 import { useCars } from "@/hooks/useCars";
 import { ImageSource } from "expo-image";
+import { Link } from "expo-router";
 import {
   ActivityIndicator,
   FlatList,
@@ -49,13 +50,15 @@ export default function HomeScreen() {
         data={cars}
         renderItem={({ item }) => (
           <View style={styles.containerCard}>
-            <CardCar
-              name={item.name}
-              consumeFuel={item.consume_fuel}
-              price={item.price_per_day}
-              rating={item.rating}
-              image={getImageSource(item.image)}
-            />
+            <Link href={`/car/${item.id}`}>
+              <CardCar
+                name={item.name}
+                consumeFuel={item.consume_fuel}
+                price={item.price_per_day}
+                rating={item.rating}
+                image={getImageSource(item.image)}
+              />
+            </Link>
           </View>
         )}
         keyExtractor={(item) => item.id}
