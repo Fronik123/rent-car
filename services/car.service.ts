@@ -13,3 +13,17 @@ export async function getCars(): Promise<ICar[]> {
 
   return data || [];
 }
+
+export async function getCarById(id: string): Promise<ICar | null> {
+  const { data, error } = await supabase
+    .from("cars")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    throw new Error(error.message || "Failed to fetch car");
+  }
+
+  return data || null;
+}

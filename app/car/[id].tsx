@@ -1,22 +1,27 @@
 import CarDetailsInfo from "@/components/car/car-details-info";
 import { ThemedText } from "@/components/ThemedText";
 import { Button } from "@/components/ui/Button";
-import { mockCars } from "@/constants/mockCar";
+import { useCar } from "@/hooks/useCars";
 import { useLocalSearchParams } from "expo-router";
-import { useState } from "react";
 import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
 
 export default function CarDetailsScreen() {
   const { id } = useLocalSearchParams();
-  // const [car, setCar] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const { data: car, isLoading, error } = useCar(id as string);
+  const { data: car, isLoading, error } = useCar(id as string);
 
-  const car = mockCars.find((item) => item.id === id);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <View className="flex-1 items-center justify-center">
         <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <Text>Error loading car: {error.message}</Text>
       </View>
     );
   }
@@ -37,23 +42,23 @@ export default function CarDetailsScreen() {
 
       <CarDetailsInfo
         top
-        descriptionFirst={car.tankCapacity}
-        descriptionSecond={car.maxSpeed}
-        descriptionThird={car.consumeFuel}
+        descriptionFirst={car.tank_capacity || "N/A"}
+        descriptionSecond={car.max_speed || "N/A"}
+        descriptionThird={car.consume_fuel}
       />
 
       <CarDetailsInfo
         top={false}
-        descriptionSecond={car.maxSpeed}
-        descriptionFirst={car.tankCapacity}
-        descriptionThird={car.consumeFuel}
+        descriptionSecond={car.max_speed || "N/A"}
+        descriptionFirst={car.tank_capacity || "N/A"}
+        descriptionThird={car.consume_fuel}
       />
 
       <View style={styles.priceInfo}>
         <ThemedText>Rent Price</ThemedText>
         <View>
           <ThemedText type="subtitle" colorName="primary">
-            {car.price}
+            ${car.price_per_day}
           </ThemedText>
           <ThemedText>/per day</ThemedText>
         </View>
