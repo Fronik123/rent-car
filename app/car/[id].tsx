@@ -1,6 +1,6 @@
 import CarDetailsInfo from "@/components/car/car-details-info";
-import { ThemedText } from "@/components/themed-text";
-import { Button } from "@/components/ui/button";
+import { ThemedText } from "@/components/ThemedText";
+import { Button } from "@/components/ui/Button";
 import { mockCars } from "@/constants/mockCar";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
