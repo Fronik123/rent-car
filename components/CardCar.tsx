@@ -1,13 +1,13 @@
-import { Image } from "expo-image";
+import { Image, ImageSource } from "expo-image";
 import { StyleSheet, View } from "react-native";
 import { ThemedText } from "./ThemedText";
 
 export type CardCarProps = {
-  rating: string;
+  rating: number;
   name: string;
   consumeFuel: string;
   price: string;
-  image?: string;
+  image?: ImageSource;
 };
 
 export default function CardCar({

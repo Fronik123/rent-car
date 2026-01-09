@@ -1,63 +1,70 @@
 import CardCar from "@/components/CardCar";
 import HomeHeader from "@/components/home/HomeHeader";
-import { FlatList, StyleSheet, View } from "react-native";
+import { useCars } from "@/hooks/useCars";
+import { ImageSource } from "expo-image";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const mockCars = [
-  {
-    id: "1",
-    name: "BMW",
-    consumeFuel: "11.2",
-    price: "300",
-    rating: "3.2",
-    image: require("../../assets/images/card-car/car1.png"),
-  },
-  {
-    id: "2",
-    name: "AUDI",
-    consumeFuel: "11.2",
-    price: "240",
-    rating: "3.2",
-    image: require("../../assets/images/card-car/car2.png"),
-  },
-  {
-    id: "4",
-    name: "Mersedes",
-    consumeFuel: "16.2",
-    price: "300",
-    rating: "3.2",
-    image: require("../../assets/images/card-car/car3.png"),
-  },
-  {
-    id: "5",
-    name: "Renault",
-    consumeFuel: "21.2",
-    price: "100",
-    rating: "4.2",
-    image: require("../../assets/images/card-car/car1.png"),
-  },
-];
-
 export default function HomeScreen() {
+  const { data: cars = [], isLoading, error, refetch } = useCars();
+
+  const getImageSource = (imageUrl?: string): ImageSource => {
+    if (imageUrl) {
+      return { uri: imageUrl };
+    }
+
+    return require("../../assets/images/card-car/car1.png");
+  };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" />
+      </SafeAreaView>
+    );
+  }
+
+  if (error) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <Text style={styles.errorText}>Error loading cars</Text>
+        <Text style={styles.errorDetails}>{error.message}</Text>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView>
       <HomeHeader />
 
       <FlatList
-        data={mockCars}
+        data={cars}
         renderItem={({ item }) => (
           <View style={styles.containerCard}>
             <CardCar
               name={item.name}
-              consumeFuel={item.consumeFuel}
-              price={item.price}
+              consumeFuel={item.consume_fuel}
+              price={item.price_per_day}
               rating={item.rating}
-              image={item.image}
+              image={getImageSource(item.image)}
             />
           </View>
         )}
         keyExtractor={(item) => item.id}
+        refreshing={isLoading}
+        onRefresh={() => refetch()}
+        ListEmptyComponent={
+          <View style={styles.emptyContainer}>
+            <Text>No available cars</Text>
+          </View>
+        }
       />
 
       {/* <CardCar name="s" consumeFuel="s" price="2" rating="3" /> */}
@@ -164,5 +171,25 @@ const styles = StyleSheet.create({
 
   containerCard: {
     marginTop: 16,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyContainer: {
+    padding: 20,
+    alignItems: "center",
+  },
+  errorText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 8,
+    color: "#ff0000",
+  },
+  errorDetails: {
+    fontSize: 14,
+    color: "#666",
+    textAlign: "center",
   },
 });
