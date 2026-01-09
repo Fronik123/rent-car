@@ -1,4 +1,4 @@
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useThemeColor } from "@/hooks/useThemeColor";
 import { Asset } from "expo-asset";
 import { SvgUri } from "react-native-svg";
 

@@ -1,5 +1,5 @@
-import CardCar from "@/components/card-car";
-import HomeHeader from "@/components/home/home-header";
+import CardCar from "@/components/CardCar";
+import HomeHeader from "@/components/home/HomeHeader";
 import { FlatList, StyleSheet, View } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";

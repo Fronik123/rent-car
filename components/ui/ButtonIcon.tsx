@@ -1,38 +1,41 @@
-import { Pressable, StyleSheet, type PressableProps } from "react-native";
+import { Pressable, StyleSheet, View, type PressableProps } from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { Image } from "expo-image";
 
-export type ButtonProps = PressableProps & {
+export type ButtonIconProps = PressableProps & {
   lightColor?: string;
   darkColor?: string;
   lightTextColor?: string;
   darkTextColor?: string;
   title: string;
-  option?: "primary" | "secondary" | "outline";
+  option?: "grayLight" | "secondary" | "outline";
+  icon?: string;
 };
 
-export function Button({
+export function ButtonIcon({
   style,
   lightColor,
   darkColor,
   lightTextColor,
   darkTextColor,
   title,
-  option = "primary",
+  option = "grayLight",
+  icon,
   ...rest
-}: ButtonProps) {
+}: ButtonIconProps) {
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
-    option === "primary"
-      ? "primary"
+    option === "grayLight"
+      ? "grayLight"
       : option === "secondary"
         ? "background"
         : "background"
   );
   const textColor = useThemeColor(
     { light: lightTextColor, dark: darkTextColor },
-    option === "primary" ? "text" : option === "outline" ? "tint" : "text"
+    option === "grayLight" ? "text" : option === "outline" ? "tint" : "text"
   );
   const borderColor = option === "outline" ? textColor : undefined;
 
@@ -49,7 +52,11 @@ export function Button({
       ]}
       {...rest}
     >
-      {title && <ThemedText style={{ color: textColor }}>{title}</ThemedText>}
+      <View style={styles.buttonIcon}>
+        <Image source={icon} style={{ width: 24, height: 24 }} />
+
+        <ThemedText style={{ color: textColor }}>{title}</ThemedText>
+      </View>
     </Pressable>
   );
 }
@@ -58,9 +65,12 @@ const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderRadius: 20,
+    borderRadius: 16,
     height: 48,
+  },
+  buttonIcon: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    gap: 12,
   },
 });

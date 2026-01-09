@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import { Pressable, StyleSheet, View } from "react-native";
-import { ThemedText } from "../themed-text";
+import { ThemedText } from "../ThemedText";
 
 export default function HomeHeader() {
   const name = "Mi";

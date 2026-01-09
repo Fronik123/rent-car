@@ -38,6 +38,7 @@ export const Colors = {
     secondary: "#4285F4",
     seccess: "#32AF47",
     error: "#FF4848",
+    grayLight: "#232323",
     gray: "#666666",
     secondaryGray: "#FFFFFFB2",
   },
@@ -53,6 +54,7 @@ export const Colors = {
     seccess: "#228B22",
     error: "#D32F2F",
     gray: "#888888",
+    grayLight: "#232323",
     secondaryGray: "#FFFFFFB2",
   },
 };
