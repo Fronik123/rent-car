@@ -1,5 +1,6 @@
 import CardCar from "@/components/CardCar";
 import HomeHeader from "@/components/home/HomeHeader";
+import { Colors } from "@/constants/theme";
 import { useCars } from "@/hooks/useCars";
 import { ImageSource } from "expo-image";
 import {
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 8,
-    color: "#ff0000",
+    color: Colors.light.error,
   },
   errorDetails: {
     fontSize: 14,
