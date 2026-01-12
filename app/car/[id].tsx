@@ -42,15 +42,15 @@ export default function CarDetailsScreen() {
 
         <CarDetailsInfo
           top
-          descriptionFirst={car.tank_capacity || "N/A"}
-          descriptionSecond={car.max_speed || "N/A"}
-          descriptionThird={car.consume_fuel}
+          descriptionFirst={car.max_speed || "N/A"}
+          descriptionSecond={car.engine_type || "N/A"}
+          descriptionThird={car.fuel_type || "N/A"}
         />
 
         <CarDetailsInfo
           top={false}
+          descriptionFirst={car.car_seats || "N/A"}
           descriptionSecond={car.max_speed || "N/A"}
-          descriptionFirst={car.tank_capacity || "N/A"}
           descriptionThird={car.consume_fuel}
         />
       </View>
