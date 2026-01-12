@@ -18,7 +18,7 @@ export default function CarDetailsInfo({
 }: CarDetailsInfoProps) {
   return (
     <View style={styles.containerInfo}>
-      <View>
+      <View style={styles.item}>
         {top ? (
           <Image
             source={ImagesComponent.carDetailsInfo.maxSpeed}
@@ -31,11 +31,13 @@ export default function CarDetailsInfo({
           />
         )}
 
-        <ThemedText>{top ? "Max speed" : "Car seats"}</ThemedText>
-        <ThemedText>{descriptionFirst}</ThemedText>
+        <ThemedText style={styles.text}>
+          {top ? "Max speed" : "Car seats"}
+        </ThemedText>
+        <ThemedText style={styles.text}>{descriptionFirst}</ThemedText>
       </View>
 
-      <View>
+      <View style={styles.item}>
         {top ? (
           <Image
             source={ImagesComponent.carDetailsInfo.engine}
@@ -47,11 +49,13 @@ export default function CarDetailsInfo({
             style={styles.img}
           />
         )}
-        <ThemedText>{top ? "Engine" : "Wheel drive"} </ThemedText>
-        <ThemedText>{descriptionSecond}</ThemedText>
+        <ThemedText style={styles.text}>
+          {top ? "Engine" : "Wheel drive"}{" "}
+        </ThemedText>
+        <ThemedText style={styles.text}>{descriptionSecond}</ThemedText>
       </View>
 
-      <View>
+      <View style={styles.item}>
         {top ? (
           <Image
             source={ImagesComponent.carDetailsInfo.fuelType}
@@ -63,8 +67,10 @@ export default function CarDetailsInfo({
             style={styles.img}
           />
         )}
-        <ThemedText>{top ? "Fuel type " : "Tank capacity"}</ThemedText>
-        <ThemedText>{descriptionThird}</ThemedText>
+        <ThemedText style={styles.text}>
+          {top ? "Fuel type " : "Tank capacity"}
+        </ThemedText>
+        <ThemedText style={styles.text}>{descriptionThird}</ThemedText>
       </View>
     </View>
   );
@@ -73,6 +79,16 @@ export default function CarDetailsInfo({
 const styles = StyleSheet.create({
   containerInfo: {
     flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
+  },
+  item: {
+    flexBasis: "33.33%",
+    alignItems: "center",
+    maxWidth: "33.33%",
+  },
+  text: {
+    textAlign: "center",
   },
   img: {
     width: 40,
