@@ -7,7 +7,6 @@ import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
 
 export default function CarDetailsScreen() {
   const { id } = useLocalSearchParams();
-  // const { data: car, isLoading, error } = useCar(id as string);
   const { data: car, isLoading, error } = useCar(id as string);
 
   if (isLoading) {
@@ -35,40 +34,59 @@ export default function CarDetailsScreen() {
   }
 
   return (
-    <View>
-      <ThemedText>{car.name}</ThemedText>
+    <View style={styles.container}>
+      <View style={styles.content}>
+        <ThemedText>{car.name}</ThemedText>
 
-      <Image />
+        <Image />
 
-      <CarDetailsInfo
-        top
-        descriptionFirst={car.tank_capacity || "N/A"}
-        descriptionSecond={car.max_speed || "N/A"}
-        descriptionThird={car.consume_fuel}
-      />
+        <CarDetailsInfo
+          top
+          descriptionFirst={car.tank_capacity || "N/A"}
+          descriptionSecond={car.max_speed || "N/A"}
+          descriptionThird={car.consume_fuel}
+        />
 
-      <CarDetailsInfo
-        top={false}
-        descriptionSecond={car.max_speed || "N/A"}
-        descriptionFirst={car.tank_capacity || "N/A"}
-        descriptionThird={car.consume_fuel}
-      />
+        <CarDetailsInfo
+          top={false}
+          descriptionSecond={car.max_speed || "N/A"}
+          descriptionFirst={car.tank_capacity || "N/A"}
+          descriptionThird={car.consume_fuel}
+        />
+      </View>
 
       <View style={styles.priceInfo}>
-        <ThemedText>Rent Price</ThemedText>
-        <View>
+        <ThemedText type="defaultSemiBold" style={styles.priceInfoTextTitle}>
+          Rent Price
+        </ThemedText>
+        <View style={styles.priceInfoText}>
           <ThemedText type="subtitle" colorName="primary">
             ${car.price_per_day}
           </ThemedText>
+
           <ThemedText>/per day</ThemedText>
         </View>
       </View>
-      <Button option="primary" title="Book Now"></Button>
+
+      <View style={styles.buttonContainer}>
+        <Button option="primary" title="Book Now"></Button>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  content: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 24,
+  },
+
   containerInfo: {
     flexDirection: "row",
   },
@@ -76,5 +94,20 @@ const styles = StyleSheet.create({
   priceInfo: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginBottom: 16,
+  },
+
+  priceInfoTextTitle: {
+    fontSize: 18,
+  },
+
+  priceInfoText: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  buttonContainer: {
+    paddingBottom: 30,
+    paddingHorizontal: 20,
   },
 });
