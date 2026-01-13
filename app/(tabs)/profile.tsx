@@ -1,18 +1,30 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ButtonIcon } from "@/components/ui/ButtonIcon";
+import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { Colors } from "@/constants/theme";
 import { useAuth } from "@/hooks/useAuth";
 import { Image } from "expo-image";
 import { router } from "expo-router";
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Profile() {
   const { signOut } = useAuth();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  const handleLogOut = async () => {
+  const handleLogOut = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleConfirmLogout = async () => {
+    setShowLogoutModal(false);
     await signOut();
     router.replace("/(auth)/sign-in");
+  };
+
+  const handleCancelLogout = () => {
+    setShowLogoutModal(false);
   };
 
   return (
@@ -62,6 +74,16 @@ export default function Profile() {
           darkTextColor={Colors.dark.error}
         />
       </View>
+
+      <ConfirmModal
+        visible={showLogoutModal}
+        title="Logout"
+        message="Are you sure you want to logout?"
+        confirmText="Logout"
+        danger={true}
+        onConfirm={handleConfirmLogout}
+        onCancel={handleCancelLogout}
+      />
     </SafeAreaView>
   );
 }
