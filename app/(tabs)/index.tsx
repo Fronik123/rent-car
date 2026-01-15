@@ -1,7 +1,9 @@
 import CardCar from "@/components/CardCar";
 import HomeHeader from "@/components/home/HomeHeader";
 import { Colors } from "@/constants/theme";
+import { useAuth } from "@/hooks/useAuth";
 import { useCars } from "@/hooks/useCars";
+import { useProfile } from "@/hooks/useProfile";
 import { ImageSource } from "expo-image";
 import { Link } from "expo-router";
 import {
@@ -16,6 +18,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const { data: cars = [], isLoading, error, refetch } = useCars();
+  const { user } = useAuth();
+  const { data: profile = null } = useProfile(user?.id);
 
   const getImageSource = (imageUrl?: string): ImageSource => {
     if (imageUrl) {
@@ -44,7 +48,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView>
-      <HomeHeader />
+      <HomeHeader user={user} profile={profile} />
 
       <FlatList
         data={cars}
