@@ -1,10 +1,15 @@
+import { IProfile } from "@/types/profile.types";
+import { User } from "@supabase/supabase-js";
 import { Image } from "expo-image";
 import { Pressable, StyleSheet, View } from "react-native";
 import { ThemedText } from "../ThemedText";
 
-export default function HomeHeader() {
-  const name = "Mi";
-  const email = "askolya@gmail.com";
+export type HomeHeaderProps = {
+  user: User | null;
+  profile: IProfile | null;
+};
+
+export default function HomeHeader({ profile, user }: HomeHeaderProps) {
   return (
     <View style={styles.header}>
       <Image
@@ -13,8 +18,8 @@ export default function HomeHeader() {
       />
 
       <View style={styles.info}>
-        <ThemedText>Hello, {name}</ThemedText>
-        <ThemedText colorName="secondaryGray">{email}</ThemedText>
+        <ThemedText>Hello, {profile?.first_name}</ThemedText>
+        <ThemedText colorName="secondaryGray">{user?.email}</ThemedText>
       </View>
 
       <Pressable style={styles.notification}>

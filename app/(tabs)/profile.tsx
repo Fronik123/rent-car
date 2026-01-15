@@ -3,14 +3,16 @@ import { ButtonIcon } from "@/components/ui/ButtonIcon";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { Colors } from "@/constants/theme";
 import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Profile() {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
+  const { data: profile } = useProfile(user?.id);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleLogOut = () => {
@@ -40,14 +42,16 @@ export default function Profile() {
         />
 
         <View style={styles.profileInfo}>
-          <ThemedText>John Doe</ThemedText>
-          <ThemedText>john.doe@example.com</ThemedText>
+          <ThemedText>{profile?.first_name || "example"}</ThemedText>
+          <ThemedText>{user?.email || "example@example.com"}</ThemedText>
         </View>
 
-        <Image
-          source={require("../../assets/images/profile/edit.png")}
-          style={{ width: 40, height: 40 }}
-        />
+        <Pressable onPress={() => router.push("/profile-edt/profile-edit")}>
+          <Image
+            source={require("../../assets/images/profile/edit.png")}
+            style={{ width: 40, height: 40 }}
+          />
+        </Pressable>
       </View>
 
       <View style={styles.buttonsContainer}>
