@@ -16,10 +16,12 @@ export default function Profile() {
   const { mutate: updateProfile } = useUpdateProfile(user?.id || "");
 
   const [name, setName] = useState(profile?.first_name);
+  const [secondName, setSecondName] = useState(profile?.last_name);
 
   const handleSave = () => {
     updateProfile({
       first_name: name || "",
+      last_name: secondName,
     });
   };
 
@@ -48,7 +50,13 @@ export default function Profile() {
               value={name}
               onChangeText={setName}
             />
-            <Input placeholder="Second name:" text="Second name" />
+
+            <Input
+              value={secondName}
+              onChangeText={setSecondName}
+              placeholder="Second name:"
+              text="Second name:"
+            />
             <Input placeholder="Email:" type="email" text="Email" />
           </View>
         </View>
