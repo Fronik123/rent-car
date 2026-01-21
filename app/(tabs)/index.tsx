@@ -72,7 +72,7 @@ export default function HomeScreen() {
           <View style={styles.containerCard}>
             <Link href={`/car/${item.id}`}>
               <CardCar
-                name={item.name}
+                name={item.brand}
                 consumeFuel={item.consume_fuel}
                 price={item.price_per_day}
                 rating={item.rating}

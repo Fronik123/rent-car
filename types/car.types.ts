@@ -1,6 +1,6 @@
 export interface ICar {
   id: string;
-  name: string;
+  brand: string;
   consume_fuel: string;
   price_per_day: string;
   rating: number;
