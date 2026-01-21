@@ -1,11 +1,13 @@
 import CardCar from "@/components/CardCar";
 import HomeHeader from "@/components/home/HomeHeader";
+import SearchBar from "@/components/home/SearchBar";
 import { Colors } from "@/constants/theme";
 import { useAuth } from "@/hooks/useAuth";
-import { useCars } from "@/hooks/useCars";
+import { useCars, useSearchCars } from "@/hooks/useCars";
 import { useProfile } from "@/hooks/useProfile";
 import { ImageSource } from "expo-image";
 import { Link } from "expo-router";
+import { useMemo, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -17,9 +19,21 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
-  const { data: cars = [], isLoading, error, refetch } = useCars();
+  const [searchParams, setSearchParams] = useState({search: ""});
+  const { data: AllCars = [], isLoading, error, refetch } = useCars();
   const { user } = useAuth();
   const { data: profile = null } = useProfile(user?.id);
+  const { data: searchCars = [], isLoading: isSearchLoading, error: searchError, refetch: searchRefetch } = useSearchCars(searchParams.search ? searchParams.search : "");
+  
+
+  const cars = useMemo(() => {
+    return searchParams.search ? searchCars : AllCars
+  }, [AllCars, searchCars, searchParams])
+
+  
+  const handleSearch  = (query: string) =>{
+    setSearchParams({search: query})
+  }
 
   const getImageSource = (imageUrl?: string): ImageSource => {
     if (imageUrl) {
@@ -37,11 +51,11 @@ export default function HomeScreen() {
     );
   }
 
-  if (error) {
+  if (error || searchError) {
     return (
       <SafeAreaView style={styles.loadingContainer}>
         <Text style={styles.errorText}>Error loading cars</Text>
-        <Text style={styles.errorDetails}>{error.message}</Text>
+        <Text style={styles.errorDetails}>{error?.message || searchError?.message}</Text>
       </SafeAreaView>
     );
   }
@@ -49,6 +63,8 @@ export default function HomeScreen() {
   return (
     <SafeAreaView>
       <HomeHeader user={user} profile={profile} />
+
+      <SearchBar onSearch={handleSearch} />
 
       <FlatList
         data={cars}
