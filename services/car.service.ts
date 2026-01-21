@@ -27,3 +27,17 @@ export async function getCarById(id: string): Promise<ICar | null> {
 
   return data || null;
 }
+
+export async function searchCars(query: string): Promise<ICar[]> {
+  const { data, error } = await supabase
+    .from("cars")
+    .select("*")
+    .ilike("brand", `${query}`)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw new Error(error.message || "Failed to search cars");
+  }
+
+  return data || [];
+}
