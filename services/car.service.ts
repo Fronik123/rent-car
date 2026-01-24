@@ -32,7 +32,7 @@ export async function searchCars(query: string): Promise<ICar[]> {
   const { data, error } = await supabase
     .from("cars")
     .select("*")
-    .ilike("brand", `${query}`)
+    .ilike("brand", `%${query}%`)
     .order("created_at", { ascending: false });
 
   if (error) {

@@ -7,7 +7,7 @@ import { useCars, useSearchCars } from "@/hooks/useCars";
 import { useProfile } from "@/hooks/useProfile";
 import { ImageSource } from "expo-image";
 import { Link } from "expo-router";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -31,9 +31,9 @@ export default function HomeScreen() {
   }, [AllCars, searchCars, searchParams])
 
   
-  const handleSearch  = (query: string) =>{
+  const handleSearch  = useCallback( (query: string) =>{
     setSearchParams({search: query})
-  }
+  }, [])
 
   const getImageSource = (imageUrl?: string): ImageSource => {
     if (imageUrl) {
