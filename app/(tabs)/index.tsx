@@ -43,7 +43,7 @@ export default function HomeScreen() {
     return require("../../assets/images/card-car/car1.png");
   };
 
-  if (isLoading) {
+  if (isLoading || isSearchLoading) {
     return (
       <SafeAreaView style={styles.loadingContainer}>
         <ActivityIndicator size="large" />
