@@ -1,6 +1,8 @@
-import { getCarById, getCars, searchCars } from "@/services/car.service";
-import { ICar } from "@/types/car.types";
 import { useQuery } from "@tanstack/react-query";
+
+import { ICar } from "@/types/car.types";
+
+import { getCarById, getCars, searchCars } from "@/services/car.service";
 
 export function useCars() {
   return useQuery<ICar[], Error>({

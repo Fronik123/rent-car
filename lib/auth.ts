@@ -1,10 +1,12 @@
-import { IAuthResult } from "@/types/auth.types";
 import { AuthError, Session, User } from "@supabase/supabase-js";
+
+import { IAuthResult } from "@/types/auth.types";
+
 import { supabase } from "./supabase";
 
 export async function signUp(
   email: string,
-  password: string
+  password: string,
 ): Promise<IAuthResult> {
   try {
     const { data, error } = await supabase.auth.signUp({
@@ -28,7 +30,7 @@ export async function signUp(
 
 export async function signIn(
   email: string,
-  password: string
+  password: string,
 ): Promise<IAuthResult> {
   try {
     const { data, error } = await supabase.auth.signInWithPassword({

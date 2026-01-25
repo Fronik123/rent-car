@@ -1,7 +1,9 @@
-import { IProfile } from "@/types/profile.types";
 import { User } from "@supabase/supabase-js";
 import { Image } from "expo-image";
 import { Pressable, StyleSheet, View } from "react-native";
+
+import { IProfile } from "@/types/profile.types";
+
 import { ThemedText } from "../ThemedText";
 
 export type HomeHeaderProps = {

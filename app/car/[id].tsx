@@ -1,9 +1,11 @@
-import CarDetailsInfo from "@/components/car/car-details-info";
-import { ThemedText } from "@/components/ThemedText";
-import { Button } from "@/components/ui/Button";
-import { useCar } from "@/hooks/useCars";
 import { useLocalSearchParams } from "expo-router";
 import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
+
+import { ThemedText } from "@/components/ThemedText";
+import CarDetailsInfo from "@/components/car/car-details-info";
+import { Button } from "@/components/ui/Button";
+
+import { useCar } from "@/hooks/useCars";
 
 export default function CarDetailsScreen() {
   const { id } = useLocalSearchParams();
@@ -36,7 +38,7 @@ export default function CarDetailsScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <ThemedText>{car.name}</ThemedText>
+        <ThemedText>{car.brand}</ThemedText>
 
         <Image />
 
@@ -59,6 +61,7 @@ export default function CarDetailsScreen() {
         <ThemedText type="defaultSemiBold" style={styles.priceInfoTextTitle}>
           Rent Price
         </ThemedText>
+
         <View style={styles.priceInfoText}>
           <ThemedText type="subtitle" colorName="primary">
             ${car.price_per_day}

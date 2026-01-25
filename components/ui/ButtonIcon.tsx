@@ -1,8 +1,9 @@
-import { Pressable, StyleSheet, View, type PressableProps } from "react-native";
+import { Image } from "expo-image";
+import { Pressable, type PressableProps, StyleSheet, View } from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
+
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { Image } from "expo-image";
 
 export type ButtonIconProps = PressableProps & {
   lightColor?: string;
@@ -31,11 +32,11 @@ export function ButtonIcon({
       ? "grayLight"
       : option === "secondary"
         ? "background"
-        : "background"
+        : "background",
   );
   const textColor = useThemeColor(
     { light: lightTextColor, dark: darkTextColor },
-    option === "grayLight" ? "text" : option === "outline" ? "tint" : "text"
+    option === "grayLight" ? "text" : option === "outline" ? "tint" : "text",
   );
   const borderColor = option === "outline" ? textColor : undefined;
 

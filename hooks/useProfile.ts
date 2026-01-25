@@ -1,6 +1,8 @@
-import { getProfile, updateProfile } from "@/services/profile.service";
-import { IProfile } from "@/types/profile.types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+import { IProfile } from "@/types/profile.types";
+
+import { getProfile, updateProfile } from "@/services/profile.service";
 
 export function useProfile(id: string | undefined) {
   return useQuery<IProfile | null, Error>({
