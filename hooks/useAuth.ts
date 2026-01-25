@@ -6,9 +6,10 @@ import {
   getSession,
   onAuthStateChange,
 } from "@/lib/auth";
-import { IAuthResult } from "@/types/auth.types";
 import { Session, User } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
+
+import { IAuthResult } from "@/types/auth.types";
 
 export type UseAuthReturn = {
   user: User | null;
@@ -82,7 +83,7 @@ export function useAuth(): UseAuthReturn {
 
   const signIn = async (
     email: string,
-    password: string
+    password: string,
   ): Promise<IAuthResult> => {
     setIsLoading(true);
     try {
@@ -108,7 +109,7 @@ export function useAuth(): UseAuthReturn {
 
   const signUp = async (
     email: string,
-    password: string
+    password: string,
   ): Promise<IAuthResult> => {
     setIsLoading(true);
     try {

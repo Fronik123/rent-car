@@ -1,6 +1,7 @@
-import { Pressable, StyleSheet, type PressableProps } from "react-native";
+import { Pressable, type PressableProps, StyleSheet } from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
+
 import { useThemeColor } from "@/hooks/useThemeColor";
 
 export type ButtonProps = PressableProps & {
@@ -28,11 +29,11 @@ export function Button({
       ? "primary"
       : option === "secondary"
         ? "background"
-        : "background"
+        : "background",
   );
   const textColor = useThemeColor(
     { light: lightTextColor, dark: darkTextColor },
-    option === "primary" ? "text" : option === "outline" ? "tint" : "text"
+    option === "primary" ? "text" : option === "outline" ? "tint" : "text",
   );
   const borderColor = option === "outline" ? textColor : undefined;
 

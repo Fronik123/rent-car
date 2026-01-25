@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+
 import { ICar } from "@/types/car.types";
 
 export async function getCars(): Promise<ICar[]> {

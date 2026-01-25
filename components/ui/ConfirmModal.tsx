@@ -1,8 +1,9 @@
+import { Colors } from "@/constants/theme";
+import { Modal, Pressable, StyleSheet, View } from "react-native";
+
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Button } from "@/components/ui/Button";
-import { Colors } from "@/constants/theme";
-import { Modal, Pressable, StyleSheet, View } from "react-native";
 
 export type ConfirmModalProps = {
   visible: boolean;

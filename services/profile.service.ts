@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+
 import { IProfile } from "@/types/profile.types";
 
 export async function getProfile(id: string): Promise<IProfile | null> {
@@ -17,7 +18,7 @@ export async function getProfile(id: string): Promise<IProfile | null> {
 
 export async function updateProfile(
   id: string,
-  profileData: IProfile
+  profileData: IProfile,
 ): Promise<IProfile | null> {
   const { id: _, created_at: __, ...dataToUpdate } = profileData;
   console.log("dataToUpdate", dataToUpdate);

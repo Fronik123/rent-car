@@ -1,5 +1,6 @@
 import { Image, ImageSource } from "expo-image";
 import { StyleSheet, View } from "react-native";
+
 import { ThemedText } from "./ThemedText";
 
 export type CardCarProps = {

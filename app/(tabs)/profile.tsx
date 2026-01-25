@@ -1,14 +1,16 @@
-import { ThemedText } from "@/components/ThemedText";
-import { ButtonIcon } from "@/components/ui/ButtonIcon";
-import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { Colors } from "@/constants/theme";
-import { useAuth } from "@/hooks/useAuth";
-import { useProfile } from "@/hooks/useProfile";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+import { ThemedText } from "@/components/ThemedText";
+import { ButtonIcon } from "@/components/ui/ButtonIcon";
+import { ConfirmModal } from "@/components/ui/ConfirmModal";
+
+import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 
 export default function Profile() {
   const { signOut, user } = useAuth();

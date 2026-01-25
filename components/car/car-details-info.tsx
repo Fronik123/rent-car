@@ -1,6 +1,7 @@
 import { ImagesComponent } from "@/constants/images";
 import { Image } from "expo-image";
 import { StyleSheet, View } from "react-native";
+
 import { ThemedText } from "../ThemedText";
 
 export type CarDetailsInfoProps = {

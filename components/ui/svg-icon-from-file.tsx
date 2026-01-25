@@ -1,6 +1,7 @@
-import { useThemeColor } from "@/hooks/useThemeColor";
 import { Asset } from "expo-asset";
 import { SvgUri } from "react-native-svg";
+
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 type SvgIconFromFileProps = {
   source: any;

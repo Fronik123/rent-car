@@ -1,6 +1,7 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { SupabaseClient, createClient } from "@supabase/supabase-js";
 import Constants from "expo-constants";
 import "react-native-url-polyfill/auto";
+
 import { SupabaseSecureStore } from "./storage";
 
 // Получаем URL и ключ из переменных окружения
@@ -17,7 +18,7 @@ const supabaseAnonKey =
 // Проверяем наличие обязательных переменных
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn(
-    "⚠️ Supabase URL или ключ не найдены. Убедитесь, что вы установили EXPO_PUBLIC_SUPABASE_URL и EXPO_PUBLIC_SUPABASE_ANON_KEY в .env файле или app.config.js"
+    "⚠️ Supabase URL или ключ не найдены. Убедитесь, что вы установили EXPO_PUBLIC_SUPABASE_URL и EXPO_PUBLIC_SUPABASE_ANON_KEY в .env файле или app.config.js",
   );
 } else {
   // Проверяем формат ключа
@@ -27,7 +28,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
     console.log("✅ Используется anon key (JWT формат)");
   } else {
     console.warn(
-      "⚠️ Необычный формат ключа. Ожидается ключ начинающийся с 'eyJ' (JWT) или 'sb_publishable_' (новый формат)"
+      "⚠️ Необычный формат ключа. Ожидается ключ начинающийся с 'eyJ' (JWT) или 'sb_publishable_' (новый формат)",
     );
   }
 }
@@ -43,5 +44,5 @@ export const supabase: SupabaseClient = createClient(
       persistSession: true,
       detectSessionInUrl: false,
     },
-  }
+  },
 );

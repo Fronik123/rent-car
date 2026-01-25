@@ -12,15 +12,15 @@ Mobile app for luxury car rentals. Built with **Expo** (React Native) and **Supa
 
 ## Main screens
 
-| Screen | Description |
-|--------|-------------|
-| **Sign In** | Email/password login (Supabase Auth) |
-| **Home** | Car list from DB: cards with price, rating, fuel consumption. Pull-to-refresh |
-| **Car Details** | Engine, fuel, seats, speed, price per day, “Book Now” button |
-| **Profile** | Avatar, name, email; Payment, Documents, Support; logout with confirmation |
-| **Profile Edit** | Update `profiles` table |
-| **Calendar** | Placeholder (basic template) |
-| **Settings** | Notifications, Language, Privacy Policy, Terms |
+| Screen           | Description                                                                   |
+| ---------------- | ----------------------------------------------------------------------------- |
+| **Sign In**      | Email/password login (Supabase Auth)                                          |
+| **Home**         | Car list from DB: cards with price, rating, fuel consumption. Pull-to-refresh |
+| **Car Details**  | Engine, fuel, seats, speed, price per day, “Book Now” button                  |
+| **Profile**      | Avatar, name, email; Payment, Documents, Support; logout with confirmation    |
+| **Profile Edit** | Update `profiles` table                                                       |
+| **Calendar**     | Placeholder (basic template)                                                  |
+| **Settings**     | Notifications, Language, Privacy Policy, Terms                                |
 
 ## Project structure
 
@@ -48,5 +48,3 @@ constants/        — theme, images, mockCar
 1. Install: `npm install`
 2. Set `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_ANON_KEY` (`.env` or `app.config.js`)
 3. Start: `npx expo start`
-
-
