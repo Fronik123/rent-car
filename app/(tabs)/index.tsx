@@ -1,5 +1,4 @@
 import { Colors } from "@/constants/theme";
-import { ImageSource } from "expo-image";
 import { Link } from "expo-router";
 import { useCallback, useMemo, useState } from "react";
 import {
@@ -18,6 +17,7 @@ import SearchBar from "@/components/home/SearchBar";
 import { useAuth } from "@/hooks/useAuth";
 import { useCars, useSearchCars } from "@/hooks/useCars";
 import { useProfile } from "@/hooks/useProfile";
+import { getImageSource } from "@/utils/hepler";
 
 export default function HomeScreen() {
   const [searchParams, setSearchParams] = useState({ search: "" });
@@ -38,14 +38,6 @@ export default function HomeScreen() {
   const handleSearch = useCallback((query: string) => {
     setSearchParams({ search: query });
   }, []);
-
-  const getImageSource = (imageUrl?: string): ImageSource => {
-    if (imageUrl) {
-      return { uri: imageUrl };
-    }
-
-    return require("../../assets/images/card-car/car1.png");
-  };
 
   if (isLoading || isSearchLoading) {
     return (
