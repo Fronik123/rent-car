@@ -44,7 +44,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="calendar"
+        name="rentals"
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ color, focused }) => (
