@@ -63,7 +63,7 @@ export default function MyRental() {
           if (!car) return null;
           return (
             <View style={styles.card}>
-              <Link href={`/car/${item.car_id}`}>
+              <Link href={`/car/${item.car_id}?from=rentals`}>
                 <CardCar
                   name={car.brand}
                   consumeFuel={car.consume_fuel}
