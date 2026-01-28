@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { useCar } from "@/hooks/useCars";
 
 export default function CarDetailsScreen() {
-  const { id } = useLocalSearchParams();
+  const { id, from } = useLocalSearchParams();
   const { data: car, isLoading, error } = useCar(id as string);
 
   if (isLoading) {
@@ -71,9 +71,15 @@ export default function CarDetailsScreen() {
         </View>
       </View>
 
-      <View style={styles.buttonContainer}>
-        <Button option="primary" title="Book Now"></Button>
-      </View>
+      {from === "rentals" ? (
+        <View style={styles.buttonContainer}>
+          <Button option="primary" title="Cancel the rental"></Button>
+        </View>
+      ) : (
+        <View style={styles.buttonContainer}>
+          <Button option="primary" title="Book Now"></Button>
+        </View>
+      )}
     </View>
   );
 }
