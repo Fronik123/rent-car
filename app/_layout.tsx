@@ -59,19 +59,18 @@ export default function RootLayout() {
       <LocaleProvider>
         <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
           {/* <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}> */}
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen
-              name="(auth)/sign-in"
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="language"
-              options={{ headerShown: false }}
-            />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="(auth)/sign-in" />
+            <Stack.Screen name="language" />
+            <Stack.Screen name="profile-edit" />
             <Stack.Screen
               name="modal"
-              options={{ presentation: "modal", title: "Modal" }}
+              options={{
+                presentation: "modal",
+                title: "Modal",
+                headerShown: true,
+              }}
             />
           </Stack>
           <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />

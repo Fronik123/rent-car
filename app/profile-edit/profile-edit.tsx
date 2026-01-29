@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile, useUpdateProfile } from "@/hooks/useProfile";
 
-export default function Profile() {
+export default function ProfileEdit() {
   const { user } = useAuth();
   const { data: profile } = useProfile(user?.id);
 
