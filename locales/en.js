@@ -1,0 +1,58 @@
+export default {
+  common: {
+    save: "Save",
+    cancel: "Cancel",
+    back: "Back",
+    loading: "Loading...",
+    error: "Error",
+  },
+  auth: {
+    signIn: "Log In to",
+    signInSubtitle: "Rent a BMW Luxury Car",
+    email: "Email",
+    password: "Password",
+    logIn: "Log In",
+    signUp: "Sign Up",
+    forgotPassword: "Forgot your password?",
+    noAccount: "Don't have an account?",
+  },
+  tabs: {
+    home: "Home",
+    profile: "Profile",
+    rentals: "Rentals",
+    settings: "Settings",
+  },
+  home: {
+    errorLoadingCars: "Error loading cars",
+    noAvailableCars: "No available cars",
+  },
+  settings: {
+    title: "Settings",
+    notifications: "Notifications",
+    language: "Language",
+    privacyPolicy: "Privacy Policy",
+    termsConditions: "Term Conditions",
+    changePassword: "Change Password",
+  },
+  language: {
+    title: "Language",
+    english: "English",
+    ukrainian: "Ukrainian",
+  },
+  profile: {
+    myProfile: "My Profile",
+    edit: "Edit",
+    documents: "Documents",
+    payment: "Payment & Currency",
+    support: "Support & Help center",
+    logout: "Log Out",
+    logoutModalTitle: "Logout",
+    logoutModalMessage: "Are you sure you want to logout?",
+    logoutConfirm: "Logout",
+  },
+  rentals: {
+    title: "My Rentals",
+    empty: "No rentals yet",
+    errorLoading: "Error loading rentals",
+  },
+};

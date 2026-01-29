@@ -16,11 +16,13 @@ import SearchBar from "@/components/home/SearchBar";
 
 import { useAuth } from "@/hooks/useAuth";
 import { useCars, useSearchCars } from "@/hooks/useCars";
+import { useLocale } from "@/hooks/useLocale";
 import { useProfile } from "@/hooks/useProfile";
 import { getImageSource } from "@/utils/hepler";
 
 export default function HomeScreen() {
   const [searchParams, setSearchParams] = useState({ search: "" });
+  const { t } = useLocale();
   const { data: AllCars = [], isLoading, error, refetch } = useCars();
   const { user } = useAuth();
   const { data: profile = null } = useProfile(user?.id);
@@ -50,7 +52,7 @@ export default function HomeScreen() {
   if (error || searchError) {
     return (
       <SafeAreaView style={styles.loadingContainer}>
-        <Text style={styles.errorText}>Error loading cars</Text>
+        <Text style={styles.errorText}>{t("home.errorLoadingCars")}</Text>
         <Text style={styles.errorDetails}>
           {error?.message || searchError?.message}
         </Text>
@@ -84,7 +86,7 @@ export default function HomeScreen() {
         onRefresh={() => refetch()}
         ListEmptyComponent={
           <View style={styles.emptyContainer}>
-            <Text>No available cars</Text>
+            <Text>{t("home.noAvailableCars")}</Text>
           </View>
         }
       />

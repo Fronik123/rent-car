@@ -1,33 +1,36 @@
+import { useLocale } from "@/hooks/useLocale";
+import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedText } from "@/components/ThemedText";
 import { ButtonIcon } from "@/components/ui/ButtonIcon";
-import { router } from "expo-router";
 
 export default function Setting() {
+  const { t } = useLocale();
+
   return (
     <SafeAreaView>
       <ThemedText type="subtitle" style={styles.title}>
-        Settings
+        {t("settings.title")}
       </ThemedText>
 
       <View style={styles.buttonsContainer}>
         <ButtonIcon
-          title="Notifications"
+          title={t("settings.notifications")}
           icon={require("../../assets/images/settings/notifications.png")}
         />
         <ButtonIcon
-          title="Language"
+          title={t("settings.language")}
           icon={require("../../assets/images/settings/language.png")}
           onPress={() => router.push("/language/language")}
         />
         <ButtonIcon
-          title="Privacy Policy"
+          title={t("settings.privacyPolicy")}
           icon={require("../../assets/images/settings/privacy-policy.png")}
         />
         <ButtonIcon
-          title="Term Conditions"
+          title={t("settings.termsConditions")}
           icon={require("../../assets/images/settings/terms-conditions.png")}
         />
       </View>
