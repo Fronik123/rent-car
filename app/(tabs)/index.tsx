@@ -41,14 +41,6 @@ export default function HomeScreen() {
     setSearchParams({ search: query });
   }, []);
 
-  if (isLoading || isSearchLoading) {
-    return (
-      <SafeAreaView style={styles.loadingContainer}>
-        <ActivityIndicator size="large" />
-      </SafeAreaView>
-    );
-  }
-
   if (error || searchError) {
     return (
       <SafeAreaView style={styles.loadingContainer}>
@@ -61,37 +53,40 @@ export default function HomeScreen() {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.screen}>
       <HomeHeader user={user} profile={profile} />
 
       <SearchBar onSearch={handleSearch} />
 
-      <FlatList
-        data={cars}
-        renderItem={({ item }) => (
-          <View style={styles.containerCard}>
-            <Link href={`/car/${item.id}`}>
-              <CardCar
-                name={item.brand}
-                consumeFuel={item.consume_fuel}
-                price={item.price_per_day}
-                rating={item.rating}
-                image={getImageSource(item.image)}
-              />
-            </Link>
-          </View>
-        )}
-        keyExtractor={(item) => item.id}
-        refreshing={isLoading}
-        onRefresh={() => refetch()}
-        ListEmptyComponent={
-          <View style={styles.emptyContainer}>
-            <Text>{t("home.noAvailableCars")}</Text>
-          </View>
-        }
-      />
-
-      {/* <CardCar name="s" consumeFuel="s" price="2" rating="3" /> */}
+      {isLoading || isSearchLoading ?
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" />
+        </View>
+        :
+        <FlatList
+          data={cars}
+          renderItem={({ item }) => (
+            <View style={styles.containerCard}>
+              <Link href={`/car/${item.id}`}>
+                <CardCar
+                  name={item.brand}
+                  consumeFuel={item.consume_fuel}
+                  price={item.price_per_day}
+                  rating={item.rating}
+                  image={getImageSource(item.image)}
+                />
+              </Link>
+            </View>
+          )}
+          keyExtractor={(item) => item.id}
+          refreshing={isLoading}
+          onRefresh={() => refetch()}
+          ListEmptyComponent={
+            <View style={styles.emptyContainer}>
+              <Text>{t("home.noAvailableCars")}</Text>
+            </View>
+          }
+        />}
     </SafeAreaView>
     // <ParallaxScrollView
     //   headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -172,6 +167,9 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   header: {
     flexDirection: "row",
     backgroundColor: "red",
