@@ -21,6 +21,7 @@ export type ButtonIconProps = PressableProps & {
   option?: "grayLight" | "secondary" | "outline";
   icon?: string;
   isChecked?: boolean;
+  isShowChecked?: boolean;
   styleIcon?: StyleProp<ImageStyle>;
 };
 
@@ -34,6 +35,7 @@ export function ButtonIcon({
   option = "grayLight",
   icon,
   isChecked = false,
+  isShowChecked = false,
   styleIcon,
   ...rest
 }: ButtonIconProps) {
@@ -71,9 +73,9 @@ export function ButtonIcon({
           <ThemedText style={{ color: textColor }}>{title}</ThemedText>
         </View>
 
-        {isChecked && isChecked ?
+        {isShowChecked ? isChecked ?
           <Image source={require("../../assets/images/input/radiobutton.png")} style={styles.buttonIconImageChecked} />
-          : <Image source={require("../../assets/images/input/radiobutton-empty.png")} style={styles.buttonIconImageChecked} />}
+          : <Image source={require("../../assets/images/input/radiobutton-empty.png")} style={styles.buttonIconImageChecked} /> : null}
       </View>
     </Pressable>
   );

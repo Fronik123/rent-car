@@ -13,6 +13,7 @@ export default function Language() {
           icon={require("../../assets/images/language/english.png")}
           isChecked={true}
           styleIcon={styles.buttonIcon}
+          isShowChecked={true}
         />
 
         <ButtonIcon
@@ -20,6 +21,7 @@ export default function Language() {
           icon={require("../../assets/images/language/Ukrainian.png")}
           isChecked={false}
           styleIcon={styles.buttonIcon}
+          isShowChecked={true}
         />
       </View>
 
