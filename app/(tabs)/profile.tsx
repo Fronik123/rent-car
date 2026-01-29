@@ -10,9 +10,11 @@ import { ButtonIcon } from "@/components/ui/ButtonIcon";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 
 import { useAuth } from "@/hooks/useAuth";
+import { useLocale } from "@/hooks/useLocale";
 import { useProfile } from "@/hooks/useProfile";
 
 export default function Profile() {
+  const { t } = useLocale();
   const { signOut, user } = useAuth();
   const { data: profile } = useProfile(user?.id);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -34,7 +36,7 @@ export default function Profile() {
   return (
     <SafeAreaView>
       <ThemedText type="subtitle" style={styles.title}>
-        My Profile
+        {t("profile.myProfile")}
       </ThemedText>
 
       <View style={styles.profileContainer}>
@@ -58,23 +60,23 @@ export default function Profile() {
 
       <View style={styles.buttonsContainer}>
         <ButtonIcon
-          title="Payment & Currency"
+          title={t("profile.payment")}
           icon={require("../../assets/images/profile/payment.png")}
         />
 
         <ButtonIcon
-          title="Documents"
+          title={t("profile.documents")}
           icon={require("../../assets/images/profile/documents.png")}
         />
 
         <ButtonIcon
-          title="Support & Help center"
+          title={t("profile.support")}
           icon={require("../../assets/images/profile/support.png")}
         />
 
         <ButtonIcon
           onPress={handleLogOut}
-          title="Log Out"
+          title={t("profile.logout")}
           icon={require("../../assets/images/profile/logout.png")}
           lightTextColor={Colors.light.error}
           darkTextColor={Colors.dark.error}
@@ -83,9 +85,9 @@ export default function Profile() {
 
       <ConfirmModal
         visible={showLogoutModal}
-        title="Logout"
-        message="Are you sure you want to logout?"
-        confirmText="Logout"
+        title={t("profile.logoutModalTitle")}
+        message={t("profile.logoutModalMessage")}
+        confirmText={t("profile.logoutConfirm")}
         danger={true}
         onConfirm={handleConfirmLogout}
         onCancel={handleCancelLogout}

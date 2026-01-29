@@ -1,0 +1,58 @@
+export default {
+  common: {
+    save: "Зберегти",
+    cancel: "Скасувати",
+    back: "Назад",
+    loading: "Завантаження...",
+    error: "Помилка",
+  },
+  auth: {
+    signIn: "Увійти",
+    signInSubtitle: "Оренда BMW Luxury Car",
+    email: "Email",
+    password: "Пароль",
+    logIn: "Увійти",
+    signUp: "Реєстрація",
+    forgotPassword: "Забули пароль?",
+    noAccount: "Немає облікового запису?",
+  },
+  tabs: {
+    home: "Головна",
+    profile: "Профіль",
+    rentals: "Оренди",
+    settings: "Налаштування",
+  },
+  home: {
+    errorLoadingCars: "Помилка завантаження авто",
+    noAvailableCars: "Немає доступних авто",
+  },
+  settings: {
+    title: "Налаштування",
+    notifications: "Сповіщення",
+    language: "Мова",
+    privacyPolicy: "Політика конфіденційності",
+    termsConditions: "Умови використання",
+    changePassword: "Змінити пароль",
+  },
+  language: {
+    title: "Мова",
+    english: "Англійська",
+    ukrainian: "Українська",
+  },
+  profile: {
+    myProfile: "Мій профіль",
+    edit: "Редагувати",
+    documents: "Документи",
+    payment: "Оплата та валюта",
+    support: "Підтримка та допомога",
+    logout: "Вийти",
+    logoutModalTitle: "Вихід",
+    logoutModalMessage: "Ви впевнені, що хочете вийти?",
+    logoutConfirm: "Вийти",
+  },
+  rentals: {
+    title: "Мої оренди",
+    empty: "Оренд ще немає",
+    errorLoading: "Помилка завантаження оренд",
+  },
+};

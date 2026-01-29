@@ -10,11 +10,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CardCar from "@/components/CardCar";
 import { ThemedText } from "@/components/ThemedText";
 import { useAuth } from "@/hooks/useAuth";
+import { useLocale } from "@/hooks/useLocale";
 import { useRentals } from "@/hooks/useRentals";
 import { getImageSource } from "@/utils/hepler";
 
 
 export default function MyRental() {
+  const { t } = useLocale();
   const { user } = useAuth();
   const { data: rentals = [], isLoading, error, refetch } = useRentals(user?.id);
   const isInitialLoading = isLoading && rentals.length === 0;
@@ -24,9 +26,9 @@ export default function MyRental() {
     return (
       <SafeAreaView style={styles.centered}>
         <ThemedText type="subtitle" style={styles.title}>
-          My Rentals
+          {t("rentals.title")}
         </ThemedText>
-        <ThemedText>Error loading rentals, {error.message}</ThemedText>
+        <ThemedText>{t("rentals.errorLoading")}, {error.message}</ThemedText>
       </SafeAreaView>
     );
   }
@@ -35,7 +37,7 @@ export default function MyRental() {
     return (
       <SafeAreaView style={styles.centered}>
         <ThemedText type="subtitle" style={styles.title}>
-          My Rentals
+          {t("rentals.title")}
         </ThemedText>
         <ActivityIndicator size="large" style={styles.loader} />
       </SafeAreaView>
@@ -45,7 +47,7 @@ export default function MyRental() {
   return (
     <SafeAreaView>
       <ThemedText type="subtitle" style={styles.title}>
-        My Rentals
+        {t("rentals.title")}
       </ThemedText>
 
       <FlatList
@@ -53,7 +55,7 @@ export default function MyRental() {
         keyExtractor={(item) => item.id}
         ListEmptyComponent={
           <View style={styles.emptyContainer}>
-            <ThemedText>No rentals yet</ThemedText>
+            <ThemedText>{t("rentals.empty")}</ThemedText>
           </View>
         }
         onRefresh={() => refetch()}

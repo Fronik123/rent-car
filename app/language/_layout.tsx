@@ -4,11 +4,13 @@ import { Pressable, StyleSheet, View } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { useLocale } from "@/hooks/useLocale";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 function LanguageHeader() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
+  const { t } = useLocale();
 
   return (
     <SafeAreaView
@@ -23,7 +25,7 @@ function LanguageHeader() {
         <ThemedText style={{ color: colors.primary }}>← Back</ThemedText>
       </Pressable>
       <ThemedText type="subtitle" style={styles.title}>
-        Language
+        {t("language.title")}
       </ThemedText>
       <View style={styles.placeholder} />
     </SafeAreaView>

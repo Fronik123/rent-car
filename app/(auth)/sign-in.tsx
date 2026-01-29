@@ -7,8 +7,10 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
 import { useAuth } from "@/hooks/useAuth";
+import { useLocale } from "@/hooks/useLocale";
 
 export default function SignIn() {
+  const { t } = useLocale();
   const { signIn, isLoading } = useAuth();
 
   const handleSignUp = () => {};
@@ -29,21 +31,21 @@ export default function SignIn() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ThemedText style={styles.title}>Log In to</ThemedText>
+      <ThemedText style={styles.title}>{t("auth.signIn")}</ThemedText>
 
-      <ThemedText style={styles.description}>Rent a BMW Luxury Car</ThemedText>
+      <ThemedText style={styles.description}>{t("auth.signInSubtitle")}</ThemedText>
 
-      <Input text="Email" />
+      <Input text={t("auth.email")} />
 
-      <Input text="Password" />
+      <Input text={t("auth.password")} />
 
       <Pressable>
-        <ThemedText>Forgot your password?</ThemedText>
+        <ThemedText>{t("auth.forgotPassword")}</ThemedText>
       </Pressable>
 
       <Button
         option="primary"
-        title={isLoading ? "Loading..." : "Log In"}
+        title={isLoading ? t("common.loading") : t("auth.logIn")}
         onPress={handleLogIn}
         disabled={isLoading}
       />
@@ -51,7 +53,7 @@ export default function SignIn() {
       <Pressable onPress={handleSignUp} style={styles.singUp}>
         <ThemedText>
           Don’t have an account?
-          <ThemedText type="link"> Sign Up.</ThemedText>
+          <ThemedText type="link"> {t("auth.signUp")}.</ThemedText>
         </ThemedText>
       </Pressable>
     </SafeAreaView>
