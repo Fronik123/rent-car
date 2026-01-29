@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedText } from "@/components/ThemedText";
 import { ButtonIcon } from "@/components/ui/ButtonIcon";
+import { router } from "expo-router";
 
 export default function Setting() {
   return (
@@ -14,19 +15,20 @@ export default function Setting() {
       <View style={styles.buttonsContainer}>
         <ButtonIcon
           title="Notifications"
-          icon={require("../../assets/images/profile/support.png")}
+          icon={require("../../assets/images/settings/notifications.png")}
         />
         <ButtonIcon
           title="Language"
-          icon={require("../../assets/images/profile/support.png")}
+          icon={require("../../assets/images/settings/language.png")}
+          onPress={() => router.push("/language/language")}
         />
         <ButtonIcon
           title="Privacy Policy"
-          icon={require("../../assets/images/profile/support.png")}
+          icon={require("../../assets/images/settings/privacy-policy.png")}
         />
         <ButtonIcon
           title="Term Conditions"
-          icon={require("../../assets/images/profile/support.png")}
+          icon={require("../../assets/images/settings/terms-conditions.png")}
         />
       </View>
     </SafeAreaView>

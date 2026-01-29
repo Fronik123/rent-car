@@ -1,5 +1,12 @@
 import { Image } from "expo-image";
-import { Pressable, type PressableProps, StyleSheet, View } from "react-native";
+import {
+  ImageStyle,
+  Pressable,
+  type PressableProps,
+  StyleProp,
+  StyleSheet,
+  View,
+} from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
 
@@ -13,6 +20,9 @@ export type ButtonIconProps = PressableProps & {
   title: string;
   option?: "grayLight" | "secondary" | "outline";
   icon?: string;
+  isChecked?: boolean;
+  isShowChecked?: boolean;
+  styleIcon?: StyleProp<ImageStyle>;
 };
 
 export function ButtonIcon({
@@ -24,6 +34,9 @@ export function ButtonIcon({
   title,
   option = "grayLight",
   icon,
+  isChecked = false,
+  isShowChecked = false,
+  styleIcon,
   ...rest
 }: ButtonIconProps) {
   const backgroundColor = useThemeColor(
@@ -54,9 +67,15 @@ export function ButtonIcon({
       {...rest}
     >
       <View style={styles.buttonIcon}>
-        <Image source={icon} style={{ width: 24, height: 24 }} />
+        <View style={styles.buttonIconImage}>
+          <Image source={icon} style={[{ width: 24, height: 24 }, styleIcon]} />
 
-        <ThemedText style={{ color: textColor }}>{title}</ThemedText>
+          <ThemedText style={{ color: textColor }}>{title}</ThemedText>
+        </View>
+
+        {isShowChecked ? isChecked ?
+          <Image source={require("../../assets/images/input/radiobutton.png")} style={styles.buttonIconImageChecked} />
+          : <Image source={require("../../assets/images/input/radiobutton-empty.png")} style={styles.buttonIconImageChecked} /> : null}
       </View>
     </Pressable>
   );
@@ -73,5 +92,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
+    justifyContent: "space-between",
+  },
+  buttonIconImage: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+  },
+  buttonIconImageChecked: {
+    width: 16,
+    height: 16,
   },
 });
