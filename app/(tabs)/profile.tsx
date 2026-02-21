@@ -50,7 +50,7 @@ export default function Profile() {
           <ThemedText>{user?.email || "example@example.com"}</ThemedText>
         </View>
 
-        <Pressable onPress={() => router.push("/profile-edt/profile-edit")}>
+        <Pressable onPress={() => router.push("/profile-edit/profile-edit")}>
           <Image
             source={require("../../assets/images/profile/edit.png")}
             style={{ width: 40, height: 40 }}
