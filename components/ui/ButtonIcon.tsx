@@ -5,6 +5,7 @@ import {
   type PressableProps,
   StyleProp,
   StyleSheet,
+  Switch,
   View,
 } from "react-native";
 
@@ -23,6 +24,8 @@ export type ButtonIconProps = PressableProps & {
   isChecked?: boolean;
   isShowChecked?: boolean;
   styleIcon?: StyleProp<ImageStyle>;
+  isShowSwitch?: boolean;
+  onValueChange?: (value: boolean) => void;
 };
 
 export function ButtonIcon({
@@ -36,6 +39,8 @@ export function ButtonIcon({
   icon,
   isChecked = false,
   isShowChecked = false,
+  isShowSwitch = false,
+  onValueChange,
   styleIcon,
   ...rest
 }: ButtonIconProps) {
@@ -76,6 +81,8 @@ export function ButtonIcon({
         {isShowChecked ? isChecked ?
           <Image source={require("../../assets/images/input/radiobutton.png")} style={styles.buttonIconImageChecked} />
           : <Image source={require("../../assets/images/input/radiobutton-empty.png")} style={styles.buttonIconImageChecked} /> : null}
+
+        {isShowSwitch ? <Switch value={isChecked} onValueChange={onValueChange} /> : null}
       </View>
     </Pressable>
   );

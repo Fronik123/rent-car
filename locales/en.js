@@ -29,6 +29,7 @@ export default {
   settings: {
     title: "Settings",
     notifications: "Notifications",
+    changeTheme: "Change Theme",
     language: "Language",
     privacyPolicy: "Privacy Policy",
     termsConditions: "Term Conditions",
