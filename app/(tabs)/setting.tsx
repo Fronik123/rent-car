@@ -1,4 +1,5 @@
 import { useLocale } from "@/hooks/useLocale";
+import { useTheme } from "@/hooks/useTheme";
 import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,6 +9,11 @@ import { ButtonIcon } from "@/components/ui/ButtonIcon";
 
 export default function Setting() {
   const { t } = useLocale();
+  const { colorScheme, setTheme } = useTheme();
+
+  const handleChangeTheme = (value: boolean) => {
+    setTheme(value ? "dark" : "light");
+  };
 
   return (
     <SafeAreaView>
@@ -19,6 +25,13 @@ export default function Setting() {
         <ButtonIcon
           title={t("settings.notifications")}
           icon={require("../../assets/images/settings/notifications.png")}
+        />
+        <ButtonIcon
+          title={t("settings.changeTheme")}
+          icon={require("../../assets/images/settings/notifications.png")}
+          isShowSwitch={true}
+          isChecked={colorScheme === "dark"}
+          onValueChange={handleChangeTheme}
         />
         <ButtonIcon
           title={t("settings.language")}

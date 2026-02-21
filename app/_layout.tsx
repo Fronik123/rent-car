@@ -1,7 +1,7 @@
 import {
   DarkTheme,
   DefaultTheme,
-  ThemeProvider,
+  ThemeProvider as NavThemeProvider,
 } from "@react-navigation/native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack, useRouter, useSegments } from "expo-router";
@@ -13,6 +13,7 @@ import "react-native-reanimated";
 import { useAuth } from "@/hooks/useAuth";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { LocaleProvider } from "@/hooks/useLocale";
+import { ThemeProvider } from "@/hooks/useTheme";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,7 +30,6 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const { isAuthenticated, isLoading } = useAuth();
   const segments = useSegments();
   const router = useRouter();
@@ -57,25 +57,33 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleProvider>
-        <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-          {/* <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}> */}
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="(auth)/sign-in" />
-            <Stack.Screen name="language" />
-            <Stack.Screen name="profile-edit" />
-            <Stack.Screen
-              name="modal"
-              options={{
-                presentation: "modal",
-                title: "Modal",
-                headerShown: true,
-              }}
-            />
-          </Stack>
-          <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+        <ThemeProvider>
+          <RootNavigator />
         </ThemeProvider>
       </LocaleProvider>
     </QueryClientProvider>
+  );
+}
+
+function RootNavigator() {
+  const colorScheme = useColorScheme();
+  return (
+    <NavThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="(auth)/sign-in" />
+        <Stack.Screen name="language" />
+        <Stack.Screen name="profile-edit" />
+        <Stack.Screen
+          name="modal"
+          options={{
+            presentation: "modal",
+            title: "Modal",
+            headerShown: true,
+          }}
+        />
+      </Stack>
+      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+    </NavThemeProvider>
   );
 }

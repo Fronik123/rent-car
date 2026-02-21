@@ -28,6 +28,7 @@ export default {
   },
   settings: {
     title: "Налаштування",
+    changeTheme: "Змінити тему",
     notifications: "Сповіщення",
     language: "Мова",
     privacyPolicy: "Політика конфіденційності",
