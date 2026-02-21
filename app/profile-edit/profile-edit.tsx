@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    marginHorizontal: 8,
   },
   title: {
     textAlign: "center",

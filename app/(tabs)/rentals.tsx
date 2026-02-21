@@ -45,7 +45,7 @@ export default function MyRental() {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <ThemedText type="subtitle" style={styles.title}>
         {t("rentals.title")}
       </ThemedText>
@@ -83,6 +83,9 @@ export default function MyRental() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 8,
+  },
   title: {
     marginTop: 16,
     textAlign: "center",

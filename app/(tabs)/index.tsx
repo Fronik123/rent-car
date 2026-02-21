@@ -65,6 +65,7 @@ export default function HomeScreen() {
         :
         <FlatList
           data={cars}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <View style={styles.containerCard}>
               <Link href={`/car/${item.id}`}>
@@ -169,6 +170,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    marginHorizontal: 8,
   },
   header: {
     flexDirection: "row",
