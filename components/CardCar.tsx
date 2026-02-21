@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     paddingTop: 5,
     paddingLeft: 10,
+    paddingRight: 5,
     borderTopLeftRadius: 10,
   },
   rightBlock: {
