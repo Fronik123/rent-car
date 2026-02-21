@@ -69,5 +69,6 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     gap: 16,
     marginTop: 16,
+    marginHorizontal: 8,
   },
 });

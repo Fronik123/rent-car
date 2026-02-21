@@ -6,7 +6,7 @@ import {
   StyleProp,
   StyleSheet,
   Switch,
-  View,
+  View
 } from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
@@ -82,7 +82,7 @@ export function ButtonIcon({
           <Image source={require("../../assets/images/input/radiobutton.png")} style={styles.buttonIconImageChecked} />
           : <Image source={require("../../assets/images/input/radiobutton-empty.png")} style={styles.buttonIconImageChecked} /> : null}
 
-        {isShowSwitch ? <Switch value={isChecked} onValueChange={onValueChange} /> : null}
+        {isShowSwitch ? <Switch value={isChecked} onValueChange={onValueChange} style={styles.switch} /> : null}
       </View>
     </Pressable>
   );
@@ -100,6 +100,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 12,
     justifyContent: "space-between",
+  },
+  switch: {
+    position: 'absolute',
+    right: -5,
+    top: -4,
   },
   buttonIconImage: {
     flexDirection: "row",
