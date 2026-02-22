@@ -1,5 +1,7 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
-import { Pressable, StyleSheet } from "react-native";
+import { Controller, useForm } from "react-hook-form";
+import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedText } from "@/components/ThemedText";
@@ -8,19 +10,32 @@ import { Input } from "@/components/ui/Input";
 
 import { useAuth } from "@/hooks/useAuth";
 import { useLocale } from "@/hooks/useLocale";
+import { signInSchema, type SignInFormData } from "@/lib/auth-schema";
 
 export default function SignIn() {
   const { t } = useLocale();
   const { signIn, isLoading } = useAuth();
 
-  const handleSignUp = () => {};
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInFormData>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-  const handleLogIn = async () => {
-    console.log("Log In");
-    const email = "test1@gmai.com";
-    const password = "12345";
+  // const email = "test1@gmai.com";
+  // const password = "12345";
 
-    const { user, session, error } = await signIn(email, password);
+  const handleSignUp = () => { };
+
+  const onLogIn = async (data: SignInFormData) => {
+    console.log("data", data);
+    const { user, session, error } = await signIn(data.email, data.password);
 
     if (error) {
       alert(`Error: ${error.message}`);
@@ -35,18 +50,58 @@ export default function SignIn() {
 
       <ThemedText style={styles.description}>{t("auth.signInSubtitle")}</ThemedText>
 
-      <Input text={t("auth.email")} />
+      <View style={styles.form}>
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              text={t("auth.email")}
+              placeholder={t("auth.email")}
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoComplete="email"
+              editable={!isLoading}
+            />
+          )}
+        />
+        {errors.email?.message && (
+          <ThemedText style={styles.error}>{t(errors.email.message)}</ThemedText>
+        )}
 
-      <Input text={t("auth.password")} />
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              text={t("auth.password")}
+              placeholder={t("auth.password")}
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              secureTextEntry
+              autoComplete="password"
+              editable={!isLoading}
+            />
+          )}
+        />
+        {errors.password?.message && (
+          <ThemedText style={styles.error}>{t(errors.password.message)}</ThemedText>
+        )}
+      </View>
 
-      <Pressable>
+
+      <Pressable style={styles.forgotPassword}>
         <ThemedText>{t("auth.forgotPassword")}</ThemedText>
       </Pressable>
 
       <Button
         option="primary"
         title={isLoading ? t("common.loading") : t("auth.logIn")}
-        onPress={handleLogIn}
+        onPress={handleSubmit(onLogIn)}
         disabled={isLoading}
       />
 
@@ -74,6 +129,19 @@ const styles = StyleSheet.create({
   description: {
     marginTop: 24,
     textAlign: "center",
+  },
+  form: {
+    gap: 5,
+  },
+  error: {
+    marginLeft: 16,
+    marginTop: 4,
+    fontSize: 12,
+    color: "#c00",
+  },
+  forgotPassword: {
+    marginTop: 10,
+    marginBottom: 5,
   },
   singUp: {
     alignItems: "center",

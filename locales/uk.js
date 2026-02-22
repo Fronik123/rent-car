@@ -15,6 +15,12 @@ export default {
     signUp: "Реєстрація",
     forgotPassword: "Забули пароль?",
     noAccount: "Немає облікового запису?",
+    validation: {
+      emailRequired: "Введіть email",
+      emailInvalid: "Введіть коректний email",
+      passwordRequired: "Введіть пароль",
+      passwordMinLength: "Пароль має бути не менше 6 символів",
+    },
   },
   tabs: {
     home: "Головна",

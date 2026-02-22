@@ -15,6 +15,12 @@ export default {
     signUp: "Sign Up",
     forgotPassword: "Forgot your password?",
     noAccount: "Don't have an account?",
+    validation: {
+      emailRequired: "Email is required",
+      emailInvalid: "Please enter a valid email",
+      passwordRequired: "Password is required",
+      passwordMinLength: "Password must be at least 6 characters",
+    },
   },
   tabs: {
     home: "Home",
