@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     gap: 16,
+    marginHorizontal: 8,
   },
   profileContainer: {
     flexDirection: "row",
@@ -114,6 +115,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 16,
     marginBottom: 32,
+    marginHorizontal: 8,
   },
   profileInfo: {
     flex: 1,
